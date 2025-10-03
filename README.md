@@ -2,7 +2,7 @@
 
 A multi-agent system built with AgentOS that demonstrates key concepts: workflows, teams, memory, and knowledge management. Agents research **AI news and research** from three sources (HackerNews, Reddit r/artificial, ArXiv), then generate daily reports and build searchable knowledge for trend analysis.
 
-## � How uIt Works
+## How It Works
 
 This system demonstrates core AgentOS concepts through a practical example:
 
