@@ -1,6 +1,6 @@
 # Daily AI Report System
 
-A multi-agent system built with AgentOS that demonstrates key concepts: workflows, teams, memory, and knowledge management. Agents research **AI news and research** from three sources (HackerNews, Reddit r/artificial, ArXiv), then generate daily reports and build searchable knowledge for trend analysis.
+A multi-agent system built with AgentOS that demonstrates key concepts: workflows, teams, memory, and knowledge management. Agents research **AI news and research** from three sources (HackerNews, Reddit r/artificial, ArXiv), then generate daily reports, audio podcasts, and build searchable knowledge for trend analysis.
 
 ## How It Works
 
@@ -18,6 +18,7 @@ This system demonstrates core AgentOS concepts through a practical example:
 
 - **Workflow Execution** - Automated sequence of AI research tasks
 - **Multi-Source AI Data** - HackerNews AI stories, Reddit r/artificial discussions, ArXiv AI papers
+- **Audio Podcasts** - Daily AI news converted to professional audio using ElevenLabs
 - **Team Memory** - Agents retain execution patterns and coordination preferences
 - **Knowledge Accumulation** - Vector database builds searchable AI knowledge over time
 - **Trend Analysis** - Historical data enables long-term AI trend identification
@@ -47,10 +48,11 @@ This system demonstrates core AgentOS concepts through a practical example:
    # Edit .env and add your OpenRouter API key
    ```
 
-4. **Get your OpenRouter API key**
-   - Visit [OpenRouter](https://openrouter.ai/keys)
-   - Create an account and generate an API key
-   - Add it to your `.env` file
+4. **Get your API keys**
+   - **OpenRouter**: Visit [OpenRouter](https://openrouter.ai/keys) for AI models
+   - **ElevenLabs**: Visit [ElevenLabs](https://elevenlabs.io/) for text-to-speech (podcast feature)
+     - Make sure your API key has `voices_read` and `text_to_speech` permissions
+   - Add both keys to your `.env` file
 
 ## 🎯 Usage
 
@@ -75,6 +77,8 @@ The system will start on `http://localhost:7777`
 ```
 reports/           # Final daily reports
 research/          # Raw research data (HN, Reddit, ArXiv)
+podcasts/          # Daily AI podcasts organized by date
+  └── YYYY-MM-DD/  # Episode directory (script.md + audio.mp3)
 trends/            # Trend analysis reports (on-demand)
 ```
 
@@ -83,14 +87,18 @@ trends/            # Trend analysis reports (on-demand)
 - **HN Reddit Researcher** - Gathers AI news from HackerNews and Reddit
 - **ArXiv Researcher** - Finds latest AI research papers
 - **Report Writer** - Creates concise daily intelligence reports
+- **Podcast Script Writer** - Creates plain text podcast scripts
+- **Podcast Producer** - Converts scripts to audio using ElevenLabs
 - **Trend Analyst** - Analyzes long-term AI trends (chat-based)
 
 ## 🔄 Workflow
 
-1. **Daily Report Workflow**: Executes team of 3 agents sequentially to research AI developments
+1. **Daily Report Workflow**: Executes 5 agents sequentially to research AI developments and create multimedia content
    - **HN Reddit Researcher**: Fetches top AI stories from HackerNews + AI discussions from Reddit r/artificial → `research/hn_reddit_YYYY-MM-DD.md`
    - **ArXiv Researcher**: Searches latest AI research papers from ArXiv → `research/arxiv_YYYY-MM-DD.md`  
    - **Report Writer**: Synthesizes AI research into daily report → `reports/daily_report_YYYY-MM-DD.md`
+   - **Podcast Script Writer**: Creates plain text podcast script → `podcasts/YYYY-MM-DD/script.md`
+   - **Podcast Producer**: Generates audio using ElevenLabs → `podcasts/YYYY-MM-DD/audio.mp3`
 
 2. **Trend Analysis**: Individual agent available for chat-based AI trend analysis
    - Searches accumulated AI knowledge base for historical patterns
